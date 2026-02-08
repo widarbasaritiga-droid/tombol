@@ -8,182 +8,137 @@
   <meta name="description" content="Aplikasi DIGITALISASI Jimpitan">
   <meta name="theme-color" content="#1a2980">
 
-  <!-- ===== PWA ===== -->
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
 
-  <!-- ===== ICON ROOT ===== -->
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+  <!-- ICON ROOT -->
+  <link rel="icon" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" sizes="192x192" href="android-chrome-192x192.png">
+  <link rel="icon" sizes="512x512" href="android-chrome-512x512.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <!-- ===== iOS PWA ===== -->
+  <!-- iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Jimpitan">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <!-- ===== Font Awesome ===== -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    crossorigin="anonymous"
-  >
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, sans-serif;
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#1a2980,#26d0ce);
+      font-family:system-ui,sans-serif;
+      color:#fff;
+      text-align:center;
+      padding:20px;
+    }
+    .box{max-width:400px}
+    h1{margin-bottom:10px}
+    p{opacity:.9;margin-bottom:30px}
+
+    .btn{
+      padding:18px 30px;
+      border-radius:50px;
+      border:none;
+      background:linear-gradient(to right,#ff5f6d,#ffc371);
+      color:#fff;
+      font-size:18px;
+      font-weight:bold;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 10px 25px rgba(0,0,0,.25);
+      text-decoration:none;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #1a2980, #26d0ce);
-      color: #fff;
-      text-align: center;
-      padding: 20px;
+    .install-btn{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      display:none;
+      background:#4CAF50;
+      color:#fff;
+      border:none;
+      padding:12px 18px;
+      border-radius:20px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 5px 15px rgba(0,0,0,.3);
     }
+    .install-btn.show{display:block}
 
-    .container {
-      max-width: 400px;
-      width: 100%;
-    }
-
-    h1 {
-      margin-bottom: 12px;
-      font-size: 28px;
-    }
-
-    p {
-      margin-bottom: 30px;
-      opacity: 0.9;
-    }
-
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 18px 28px;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(to right, #ff5f6d, #ffc371);
-      color: #fff;
-      text-decoration: none;
-      box-shadow: 0 10px 25px rgba(0,0,0,.25);
-    }
-
-    .btn:active {
-      transform: scale(0.97);
-    }
-
-    .install-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #4CAF50;
-      color: #fff;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 20px;
-      display: none;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,.3);
-    }
-
-    .install-btn.show {
-      display: block;
-    }
-
-    .status {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(255,255,255,.9);
-      color: #000;
-      padding: 10px 15px;
-      border-radius: 20px;
-      font-size: 14px;
-      display: none;
-    }
-
-    .status.show {
-      display: block;
+    .ios-hint{
+      display:none;
+      position:fixed;
+      bottom:20px;
+      left:20px;
+      background:#fff;
+      color:#000;
+      padding:12px 16px;
+      border-radius:16px;
+      font-size:14px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>DIGITALISASI Jimpitan</h1>
-    <p>Aplikasi pencatatan jimpitan digital berbasis PWA</p>
+<div class="box">
+  <h1>DIGITALISASI Jimpitan</h1>
+  <p>Aplikasi pencatatan jimpitan digital (PWA)</p>
 
-    <a
-      href="https://widarbasaritiga-droid.github.io/bankflow-jimpitan/"
-      target="_blank"
-      class="btn"
-    >
-      <i class="fas fa-external-link-alt"></i>
-      Buka Aplikasi
-    </a>
-  </div>
+  <a href="https://widarbasaritiga-droid.github.io/bankflow-jimpitan/"
+     class="btn" target="_blank">
+    <i class="fas fa-external-link-alt"></i>
+    Buka Aplikasi
+  </a>
+</div>
 
-  <button class="install-btn" id="installBtn">
-    Install Aplikasi
-  </button>
+<button id="installBtn" class="install-btn">Install Aplikasi</button>
 
-  <div class="status" id="status"></div>
+<div id="iosHint" class="ios-hint">
+  📱 iPhone: tekan <b>Share</b> → <b>Add to Home Screen</b>
+</div>
 
-  <script>
-    /* ===== SERVICE WORKER ===== */
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("/bankflow-jimpitan/sw.js")
-          .then(reg => showStatus("Mode offline siap"))
-          .catch(() => showStatus("Service Worker gagal"));
-      });
-    }
+<script>
+/* === SERVICE WORKER === */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/bankflow-jimpitan/sw.js");
+  });
+}
 
-    /* ===== INSTALL PROMPT ===== */
-    let deferredPrompt;
-    const installBtn = document.getElementById("installBtn");
+/* === INSTALL ANDROID (1 KLIK) === */
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
 
-    window.addEventListener("beforeinstallprompt", e => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.classList.add("show");
-    });
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  setTimeout(() => installBtn.classList.add("show"), 1500);
+});
 
-    installBtn.addEventListener("click", async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      installBtn.classList.remove("show");
-    });
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.classList.remove("show");
+});
 
-    window.addEventListener("appinstalled", () => {
-      showStatus("Aplikasi berhasil diinstal");
-      installBtn.classList.remove("show");
-    });
-
-    /* ===== STATUS ===== */
-    function showStatus(msg) {
-      const el = document.getElementById("status");
-      el.textContent = msg;
-      el.classList.add("show");
-      setTimeout(() => el.classList.remove("show"), 3000);
-    }
-  </script>
+/* === iOS HINT === */
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+if (isIOS && !navigator.standalone) {
+  document.getElementById("iosHint").style.display = "block";
+}
+</script>
 
 </body>
 </html>
