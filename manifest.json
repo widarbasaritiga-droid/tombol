@@ -1,0 +1,22 @@
+{
+  "name": "DIGITALISASI Jimpitan",
+  "short_name": "Jimpitan",
+  "description": "Aplikasi DIGITALISASI Jimpitan",
+  "start_url": "/bankflow-jimpitan/",
+  "display": "standalone",
+  "background_color": "#1a2980",
+  "theme_color": "#1a2980",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/bankflow-jimpitan/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/bankflow-jimpitan/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
