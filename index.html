@@ -1,81 +1,120 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>DIGITALISASI Jimpitan</title>
-  <meta name="description" content="Aplikasi DIGITALISASI Jimpitan" />
-  <meta name="theme-color" content="#1a2980" />
+  <meta name="description" content="Aplikasi DIGITALISASI Jimpitan">
+  <meta name="theme-color" content="#1a2980">
 
-  <!-- PWA Manifest -->
+  <!-- ===== PWA ===== -->
   <link rel="manifest" href="manifest.json">
 
-  <!-- Icons (ROOT) -->
+  <!-- ===== ICON ROOT ===== -->
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <!-- iOS PWA Support -->
+  <!-- ===== iOS PWA ===== -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Jimpitan">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <!-- Font Awesome -->
+  <!-- ===== Font Awesome ===== -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-papNM8DkKpHb6l8QnP+GqOR/mdrIW6DCeU44y7Nys8lm2SleqU9jwELyhl725LLJoPLD114F8C5Z4PlzyBbsA=="
     crossorigin="anonymous"
-    referrerpolicy="no-referrer"
   >
-</head>
+
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, #1a2980, #26d0ce);
-      font-family: system-ui, sans-serif;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: 28px;
+    }
+
+    p {
+      margin-bottom: 30px;
+      opacity: 0.9;
     }
 
     .btn {
-      padding: 24px 48px;
-      font-size: 22px;
-      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 28px;
+      font-size: 18px;
+      font-weight: bold;
       border-radius: 50px;
       border: none;
       cursor: pointer;
-      color: white;
       background: linear-gradient(to right, #ff5f6d, #ffc371);
-      box-shadow: 0 10px 25px rgba(0,0,0,.25);
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      color: #fff;
       text-decoration: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
     }
 
     .btn:active {
-      transform: scale(.97);
+      transform: scale(0.97);
     }
 
     .install-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      padding: 12px 20px;
-      border-radius: 20px;
-      border: none;
       background: #4CAF50;
-      color: white;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 20px;
       display: none;
       cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,.3);
     }
 
     .install-btn.show {
+      display: block;
+    }
+
+    .status {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255,255,255,.9);
+      color: #000;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .status.show {
       display: block;
     }
   </style>
@@ -83,20 +122,34 @@
 
 <body>
 
-  <a class="btn" href="https://widarbasaritiga-droid.github.io/bankflow-jimpitan/" target="_blank">
-    <i class="fas fa-external-link-alt"></i>
-    Buka DIGITALISASI Jimpitan
-  </a>
+  <div class="container">
+    <h1>DIGITALISASI Jimpitan</h1>
+    <p>Aplikasi pencatatan jimpitan digital berbasis PWA</p>
 
-  <button class="install-btn" id="installBtn">Install Aplikasi</button>
+    <a
+      href="https://widarbasaritiga-droid.github.io/bankflow-jimpitan/"
+      target="_blank"
+      class="btn"
+    >
+      <i class="fas fa-external-link-alt"></i>
+      Buka Aplikasi
+    </a>
+  </div>
+
+  <button class="install-btn" id="installBtn">
+    Install Aplikasi
+  </button>
+
+  <div class="status" id="status"></div>
 
   <script>
     /* ===== SERVICE WORKER ===== */
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/bankflow-jimpitan/sw.js")
-          .then(reg => console.log("SW aktif:", reg.scope))
-          .catch(err => console.error("SW gagal:", err));
+        navigator.serviceWorker
+          .register("/bankflow-jimpitan/sw.js")
+          .then(reg => showStatus("Mode offline siap"))
+          .catch(() => showStatus("Service Worker gagal"));
       });
     }
 
@@ -119,8 +172,17 @@
     });
 
     window.addEventListener("appinstalled", () => {
+      showStatus("Aplikasi berhasil diinstal");
       installBtn.classList.remove("show");
     });
+
+    /* ===== STATUS ===== */
+    function showStatus(msg) {
+      const el = document.getElementById("status");
+      el.textContent = msg;
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 3000);
+    }
   </script>
 
 </body>
