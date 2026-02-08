@@ -1,537 +1,112 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BankFlow Jimpitan</title>
-    <meta name="description" content="Aplikasi BankFlow Jimpitan">
-    <meta name="theme-color" content="#1a2980">
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkJhbmtGbG93IEppbXBpdGFuIiwKICAic2hvcnRfbmFtZSI6ICJCYW5rRmxvdyIsCiAgImRlc2NyaXB0aW9uIjogIlRvbWJ1bCBha3NlcyBjcGF0IGtlIEJhbmtGbG93IEppbXBpdGFuIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMxYTI5ODAiLAogICJ0aGVtZV9jb2xvciI6ICIjMWEyOTgwIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzIwJyBmaWxsPScjMWEyOTgwJy8+PHRleHQgeD0nNTAlJyB5PSc1NSUnIGZvbnQtZmFtaWx5PSdBcmlhbCcgZm9udC1zaXplPSc0MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nd2hiteGUnPkI8L3RleHQ+PC9zdmc+IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzIwJyBmaWxsPScjMWEyOTgwJy8+PHRleHQgeD0nNTAlJyB5PSc1NSUnIGZvbnQtZmFtaWx5PSdBcmlhbCcgZm9udC1zaXplPSc2MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nd2hpdGUnPkI8L3RleHQ+PC9zdmc+IiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231a2980%22/><text x=%2250%25%22 y=%2255%25%22 font-family=%22Arial%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22white%22>B</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231a2980%22/><text x=%2250%25%22 y=%2255%25%22 font-family=%22Arial%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22white%22>B</text></svg>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #1a2980, #26d0ce);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
-        }
-        
-        .btn-container {
-            text-align: center;
-            width: 100%;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px 50px;
-            background: linear-gradient(to right, #ff5f6d, #ffc371);
-            color: white;
-            font-size: 24px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 60px;
-            box-shadow: 
-                0 15px 30px rgba(0, 0, 0, 0.2),
-                0 5px 15px rgba(255, 95, 109, 0.4),
-                inset 0 2px 0 rgba(255, 255, 255, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            min-width: 300px;
-            max-width: 90%;
-        }
-        
-        .btn:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 
-                0 25px 40px rgba(0, 0, 0, 0.25),
-                0 10px 20px rgba(255, 95, 109, 0.5),
-                inset 0 2px 0 rgba(255, 255, 255, 0.3);
-            background: linear-gradient(to right, #ff4b5c, #ffb347);
-        }
-        
-        .btn:active {
-            transform: translateY(-2px) scale(1.02);
-            transition: all 0.1s ease;
-        }
-        
-        .btn i {
-            margin-right: 15px;
-            font-size: 28px;
-            transition: transform 0.3s ease;
-        }
-        
-        .btn:hover i {
-            transform: rotate(15deg) scale(1.1);
-        }
-        
-        /* Status PWA */
-        .pwa-status {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            display: none;
-            z-index: 1000;
-        }
-        
-        .pwa-status.show {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Install button */
-        .install-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            display: none;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        
-        .install-btn.show {
-            display: block;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        /* Offline indicator */
-        .offline-indicator {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #ff4444;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            display: none;
-            z-index: 1000;
-        }
-        
-        .offline-indicator.show {
-            display: block;
-        }
-        
-        @media (max-width: 600px) {
-            .btn {
-                padding: 20px 40px;
-                font-size: 20px;
-                min-width: 250px;
-            }
-            
-            .btn i {
-                font-size: 24px;
-                margin-right: 10px;
-            }
-        }
-        
-        /* Loading animation */
-        .loading {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        
-        .loading.show {
-            display: flex;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #ff5f6d;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>DIGITALISASI Jimpitan</title>
+  <meta name="description" content="Aplikasi DIGITALISASI Jimpitan" />
+  <meta name="theme-color" content="#1a2980" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1a2980, #26d0ce);
+      font-family: system-ui, sans-serif;
+    }
+
+    .btn {
+      padding: 24px 48px;
+      font-size: 22px;
+      font-weight: 700;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(to right, #ff5f6d, #ffc371);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .install-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      border-radius: 20px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      display: none;
+      cursor: pointer;
+    }
+
+    .install-btn.show {
+      display: block;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="btn-container">
-        <a href="https://widarbasaritiga-droid.github.io/bankflow-jimpitan/" target="_blank" class="btn" id="openLinkBtn">
-            <i class="fas fa-external-link-alt"></i>
-            Buka BankFlow Jimpitan
-        </a>
-    </div>
-    
-    <!-- Status Indicators -->
-    <div class="pwa-status" id="pwaStatus"></div>
-    <button class="install-btn" id="installBtn">Install Aplikasi</button>
-    <div class="offline-indicator" id="offlineIndicator">Anda sedang offline</div>
-    
-    <!-- Loading overlay -->
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
-    </div>
 
-    <script>
-        // Inline Service Worker Script
-        const serviceWorkerScript = `
-        // Service Worker untuk BankFlow Jimpitan
-        const CACHE_NAME = 'bankflow-jimpitan-v1';
-        
-        // Event: Install
-        self.addEventListener('install', event => {
-            console.log('Service Worker: Installing...');
-            event.waitUntil(
-                caches.open(CACHE_NAME).then(cache => {
-                    console.log('Service Worker: Caching App Shell');
-                    return cache.addAll([
-                        './',
-                        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
-                    ]);
-                }).then(() => {
-                    console.log('Service Worker: Skip waiting');
-                    return self.skipWaiting();
-                })
-            );
-        });
-        
-        // Event: Activate
-        self.addEventListener('activate', event => {
-            console.log('Service Worker: Activating...');
-            event.waitUntil(
-                caches.keys().then(cacheNames => {
-                    return Promise.all(
-                        cacheNames.map(cacheName => {
-                            if (cacheName !== CACHE_NAME) {
-                                console.log('Service Worker: Clearing old cache', cacheName);
-                                return caches.delete(cacheName);
-                            }
-                        })
-                    );
-                }).then(() => {
-                    console.log('Service Worker: Claiming clients');
-                    return self.clients.claim();
-                })
-            );
-        });
-        
-        // Event: Fetch
-        self.addEventListener('fetch', event => {
-            // Skip non-GET requests and chrome-extension requests
-            if (event.request.method !== 'GET' || 
-                event.request.url.startsWith('chrome-extension://')) {
-                return;
-            }
-            
-            // Handle API requests differently
-            if (event.request.url.includes('/api/')) {
-                // Network first for API calls
-                event.respondWith(
-                    fetch(event.request)
-                        .then(response => response)
-                        .catch(() => {
-                            return new Response(
-                                JSON.stringify({error: 'You are offline'}),
-                                {
-                                    status: 503,
-                                    headers: {'Content-Type': 'application/json'}
-                                }
-                            );
-                        })
-                );
-                return;
-            }
-            
-            // Cache-first strategy for static assets
-            event.respondWith(
-                caches.match(event.request)
-                    .then(response => {
-                        if (response) {
-                            console.log('Service Worker: Serving from cache', event.request.url);
-                            return response;
-                        }
-                        
-                        console.log('Service Worker: Fetching from network', event.request.url);
-                        return fetch(event.request)
-                            .then(networkResponse => {
-                                if (!networkResponse || networkResponse.status !== 200) {
-                                    return networkResponse;
-                                }
-                                
-                                // Clone the response
-                                const responseToCache = networkResponse.clone();
-                                
-                                // Add to cache for future use
-                                caches.open(CACHE_NAME)
-                                    .then(cache => {
-                                        cache.put(event.request, responseToCache);
-                                    });
-                                
-                                return networkResponse;
-                            })
-                            .catch(() => {
-                                // If both cache and network fail, return offline page
-                                if (event.request.destination === 'document') {
-                                    return caches.match('./');
-                                }
-                                return new Response('Offline', {
-                                    status: 503,
-                                    statusText: 'Service Unavailable'
-                                });
-                            });
-                    })
-            );
-        });
-        
-        // Event: Message (for communication with client)
-        self.addEventListener('message', event => {
-            if (event.data && event.data.type === 'SKIP_WAITING') {
-                self.skipWaiting();
-            }
-        });
-        `;
+  <a class="btn" href="https://widarbasaritiga-droid.github.io/bankflow-jimpitan/" target="_blank">
+    <i class="fas fa-external-link-alt"></i>
+    Buka DIGITALISASI Jimpitan
+  </a>
 
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            // Create blob URL for service worker
-            const blob = new Blob([serviceWorkerScript], { type: 'application/javascript' });
-            const swURL = URL.createObjectURL(blob);
-            
-            // Register service worker from blob
-            window.addEventListener('load', async () => {
-                try {
-                    // Check if we're on GitHub Pages
-                    const isGitHubPages = window.location.hostname.includes('github.io');
-                    
-                    const registration = await navigator.serviceWorker.register(swURL, {
-                        scope: isGitHubPages ? './' : '/',
-                        updateViaCache: 'none'
-                    });
-                    
-                    console.log('Service Worker registered with scope:', registration.scope);
-                    showStatus('Aplikasi siap digunakan', 'success');
-                    
-                    // Check for updates
-                    registration.addEventListener('updatefound', () => {
-                        const newWorker = registration.installing;
-                        console.log('Service Worker update found!');
-                        
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                showStatus('Update tersedia! Refresh halaman.', 'info');
-                            }
-                        });
-                    });
-                    
-                    // Track service worker state
-                    if (registration.waiting) {
-                        showStatus('Update tersedia!', 'info');
-                    }
-                    
-                    if (registration.active) {
-                        console.log('Service Worker aktif');
-                    }
-                    
-                } catch (error) {
-                    console.error('Service Worker registration failed:', error);
-                    showStatus('Mode offline tidak tersedia', 'warning');
-                }
-            });
-            
-            // Clean up blob URL
-            window.addEventListener('beforeunload', () => {
-                URL.revokeObjectURL(swURL);
-            });
-        }
+  <button class="install-btn" id="installBtn">Install Aplikasi</button>
 
-        // PWA Install Prompt
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
-        
-        window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('beforeinstallprompt event fired');
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.classList.add('show');
-            showStatus('Aplikasi dapat diinstal', 'info');
-        });
+  <script>
+    /* ===== SERVICE WORKER ===== */
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/bankflow-jimpitan/sw.js")
+          .then(reg => console.log("SW aktif:", reg.scope))
+          .catch(err => console.error("SW gagal:", err));
+      });
+    }
 
-        installBtn.addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            
-            console.log(`User response to the install prompt: ${outcome}`);
-            
-            if (outcome === 'accepted') {
-                showStatus('Aplikasi berhasil diinstal!', 'success');
-                installBtn.classList.remove('show');
-                // Track installation
-                if (window.gtag) {
-                    gtag('event', 'install', {
-                        'event_category': 'PWA',
-                        'event_label': 'BankFlow Jimpitan'
-                    });
-                }
-            } else {
-                showStatus('Instalasi dibatalkan', 'warning');
-            }
-            
-            deferredPrompt = null;
-        });
+    /* ===== INSTALL PROMPT ===== */
+    let deferredPrompt;
+    const installBtn = document.getElementById("installBtn");
 
-        // Check if app is already installed
-        window.addEventListener('appinstalled', (evt) => {
-            console.log('App installed');
-            showStatus('Aplikasi telah diinstal!', 'success');
-            installBtn.classList.remove('show');
-        });
+    window.addEventListener("beforeinstallprompt", e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.classList.add("show");
+    });
 
-        // Online/Offline detection
-        function updateOnlineStatus() {
-            if (navigator.onLine) {
-                document.getElementById('offlineIndicator').classList.remove('show');
-                if (document.hidden) {
-                    showStatus('Koneksi internet aktif', 'success');
-                }
-            } else {
-                document.getElementById('offlineIndicator').classList.add('show');
-                showStatus('Mode offline aktif', 'warning');
-            }
-        }
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.classList.remove("show");
+    });
 
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
+    window.addEventListener("appinstalled", () => {
+      installBtn.classList.remove("show");
+    });
+  </script>
 
-        // Button click handler
-        document.getElementById('openLinkBtn').addEventListener('click', (e) => {
-            // Track click event
-            if (window.gtag) {
-                gtag('event', 'click', {
-                    'event_category': 'Button',
-                    'event_label': 'Buka BankFlow Jimpitan'
-                });
-            }
-            
-            // Show loading animation
-            document.getElementById('loading').classList.add('show');
-            
-            // Auto hide loading after 3 seconds
-            setTimeout(() => {
-                document.getElementById('loading').classList.remove('show');
-            }, 3000);
-            
-            console.log('Membuka BankFlow Jimpitan...');
-        });
-
-        // Status notification function
-        function showStatus(message, type = 'info') {
-            const statusDiv = document.getElementById('pwaStatus');
-            statusDiv.textContent = message;
-            
-            // Set color based on type
-            const colors = {
-                success: '#4CAF50',
-                error: '#ff4444',
-                warning: '#ff9800',
-                info: '#2196F3'
-            };
-            
-            statusDiv.style.backgroundColor = colors[type] || colors.info;
-            statusDiv.classList.add('show');
-            
-            // Auto hide after 3 seconds
-            setTimeout(() => {
-                statusDiv.classList.remove('show');
-            }, 3000);
-        }
-
-        // Check if app is running as PWA
-        function checkDisplayMode() {
-            if (window.matchMedia('(display-mode: standalone)').matches) {
-                console.log('Running as PWA');
-                showStatus('Aplikasi berjalan sebagai PWA', 'success');
-                // Hide install button when already installed
-                installBtn.classList.remove('show');
-            }
-            
-            // Check for iOS standalone mode
-            if (window.navigator.standalone === true) {
-                console.log('Running as iOS PWA');
-                showStatus('Aplikasi iOS PWA aktif', 'success');
-                installBtn.classList.remove('show');
-            }
-        }
-
-        // Periodic sync for updates (if supported)
-        if ('periodicSync' in window.registration) {
-            try {
-                const status = await navigator.permissions.query({
-                    name: 'periodic-background-sync'
-                });
-                
-                if (status.state === 'granted') {
-                    window.registration.periodicSync.register('update-content', {
-                        minInterval: 24 * 60 * 60 * 1000 // 1 day
-                    });
-                    console.log('Periodic sync registered');
-                }
-            } catch (error) {
-                console.log('Periodic sync not supported:', error);
-            }
-        }
-
-        // Initialize
-        updateOnlineStatus();
-        checkDisplayMode();
-        
-        // Listen for page visibility changes
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) {
-                checkDisplayMode();
-            }
-        });
-    </script>
 </body>
 </html>
