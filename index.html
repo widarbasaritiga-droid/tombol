@@ -1,144 +1,103 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>DIGITALISASI Jimpitan</title>
-  <meta name="description" content="Aplikasi DIGITALISASI Jimpitan">
-  <meta name="theme-color" content="#1a2980">
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- ICON ROOT -->
-  <link rel="icon" sizes="16x16" href="favicon-16x16.png">
-  <link rel="icon" sizes="192x192" href="android-chrome-192x192.png">
-  <link rel="icon" sizes="512x512" href="android-chrome-512x512.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-  <!-- iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Jimpitan">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:linear-gradient(135deg,#1a2980,#26d0ce);
-      font-family:system-ui,sans-serif;
-      color:#fff;
-      text-align:center;
-      padding:20px;
-    }
-    .box{max-width:400px}
-    h1{margin-bottom:10px}
-    p{opacity:.9;margin-bottom:30px}
-
-    .btn{
-      padding:18px 30px;
-      border-radius:50px;
-      border:none;
-      background:linear-gradient(to right,#ff5f6d,#ffc371);
-      color:#fff;
-      font-size:18px;
-      font-weight:bold;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      box-shadow:0 10px 25px rgba(0,0,0,.25);
-      text-decoration:none;
-    }
-
-    .install-btn{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      display:none;
-      background:#4CAF50;
-      color:#fff;
-      border:none;
-      padding:12px 18px;
-      border-radius:20px;
-      font-weight:bold;
-      cursor:pointer;
-      box-shadow:0 5px 15px rgba(0,0,0,.3);
-    }
-    .install-btn.show{display:block}
-
-    .ios-hint{
-      display:none;
-      position:fixed;
-      bottom:20px;
-      left:20px;
-      background:#fff;
-      color:#000;
-      padding:12px 16px;
-      border-radius:16px;
-      font-size:14px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#245c3b" />
+  <title>Pelaporan Duops Koramil 05 Sukasada</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
+  <section class="welcome-screen" id="welcome-screen" aria-labelledby="welcome-title">
+    <div class="welcome-content">
+      <img class="welcome-logo" src="icons/tni-ad-insignia.svg" alt="Logo Babinsa TNI-AD" />
+      <h1 class="welcome-title" id="welcome-title">PELAPORAN<br />DUOPS KORAMIL 05<br />SUKASADA</h1>
+      <form class="welcome-form" id="welcome-form">
+        <label for="welcome-village">Pilih desa/kelurahan</label>
+        <select id="welcome-village" name="village" required>
+          <option value="" selected disabled>Pilih desa/kelurahan</option>
+        </select>
+        <button class="print-button welcome-continue" type="submit">Lanjut</button>
+      </form>
+    </div>
+  </section>
 
-<div class="box">
-  <h1>DIGITALISASI Jimpitan</h1>
-  <p>Aplikasi pencatatan jimpitan digital (PWA)</p>
+  <div class="date-controls" aria-label="Pilih bulan dan tahun laporan">
+    <div class="filter-control"><select id="report-month" aria-label="Pilih bulan laporan"><option value="" selected disabled>-Pilih bulan-</option></select></div>
+    <div id="year-control" class="filter-control" hidden><select id="report-year" aria-label="Pilih tahun laporan"><option value="" selected disabled>-Pilih tahun-</option></select></div>
+    <div id="village-control" class="filter-control" hidden><select id="report-village" aria-label="Pilih desa atau kelurahan"></select></div>
+    <select id="report-type" aria-label="Pilih lampiran">
+      <option value="" selected>-Pilih lampiran-</option>
+      <option value="budget">Rincian dukungan anggaran</option>
+      <option value="photos">Dokumentasi foto</option>
+    </select>
+    <select id="print-mode" aria-label="Pilih lampiran yang akan dicetak">
+      <option value="both" selected>Cetak A + B</option><option value="a">Cetak A</option><option value="b">Cetak B</option>
+    </select>
+    <button id="project-folder-button" class="upload-button" type="button" title="Pilih satu folder berisi tanda tangan, stempel, file Lampiran A, dan foto Lampiran B">Pilih folder proyek</button>
+    <button id="print-button" class="print-button" type="button">Cetak / Simpan PDF</button>
+    <span id="photo-status" role="status">Pilih folder proyek untuk memuat aset dan lampiran secara otomatis</span>
+  </div>
 
-  <a href="https://widarbasaritiga-droid.github.io/bankflow-jimpitan/"
-     class="btn" target="_blank">
-    <i class="fas fa-external-link-alt"></i>
-    Buka Aplikasi
-  </a>
-</div>
+  <dialog id="photo-source-dialog" class="photo-source-dialog" aria-labelledby="photo-source-title">
+    <form method="dialog"><button class="dialog-close" type="submit" aria-label="Tutup">×</button></form>
+    <h2 id="photo-source-title">Pilih sumber foto</h2>
+    <p>Gunakan folder proyek untuk memuat foto Lampiran B, TXT Lampiran A, stempel, dan tanda tangan sekaligus.</p>
+    <div class="photo-source-options">
+      <button type="button" data-photo-source="folder">Folder proyek (semua lampiran & aset)</button>
+      <button type="button" data-photo-source="zip">Satu atau beberapa file ZIP</button>
+      <button type="button" data-photo-source="images">Satu atau beberapa file gambar</button>
+    </div>
+  </dialog>
+  <dialog id="selection-warning-dialog" class="photo-source-dialog" aria-labelledby="selection-warning-title">
+    <form method="dialog"><button class="dialog-close" type="submit" aria-label="Tutup">×</button></form>
+    <h2 id="selection-warning-title">Lengkapi periode laporan</h2>
+    <p id="selection-warning-message">Pilih bulan dan tahun terlebih dahulu sebelum memilih wilayah dan memuat foto.</p>
+    <form method="dialog"><button class="warning-confirm" type="submit">Mengerti</button></form>
+  </dialog>
+  <input id="local-folder-input" type="file" webkitdirectory directory multiple aria-label="Pilih folder proyek berisi aset dan lampiran" hidden />
+  <input id="photo-files-input" type="file" accept="image/*,.zip,application/zip" multiple aria-label="Pilih foto atau arsip ZIP" hidden />
+  <input id="budget-text-input" type="file" accept=".txt,text/plain" aria-label="Pilih file TXT Lampiran A" hidden />
 
-<button id="installBtn" class="install-btn">Install Aplikasi</button>
+  <main class="document report-canvas" id="photo-document">
+    <section class="page page-one">
+      <header class="document-header">
+        <div class="unit-heading"><strong>KOMANDO DISTRIK MILITER 1609/BULELENG</strong><strong>KOMANDO RAYON MILITER 1609-05</strong></div>
+        <div class="attachment"><span>Lampiran : <span id="attachment-code">B</span> (Dokumentasi kegiatan Dukungan Operasional Babinsa) pada</span><span>Laplakgiat Dukungan Operasional Babinsa Koramil 1609-05/<span id="attachment-village">Sukasada</span></span><span id="attachment-period"></span></div>
+      </header>
+      <h1 class="report-title">DOKUMENTASI KEGIATAN DUKUNGAN OPERASIONAL BABINSA<br />KEGIATAN DUKUNGAN OPERASIONAL BABINSA KORAMIL 1609-05/SUKASADA<br />BULAN <span id="title-period"></span></h1>
+      <div class="photo-grid first-grid" aria-label="Dokumentasi kegiatan 1 sampai 6">
+        <div class="photo-row"><article class="photo-card"><div class="photo-number">1</div><div class="photo-slot"></div></article><article class="photo-card"><div class="photo-number">2</div><div class="photo-slot"></div></article><article class="photo-card"><div class="photo-number">3</div><div class="photo-slot"></div></article></div>
+        <div class="photo-row"><article class="photo-card"><div class="photo-number">4</div><div class="photo-slot"></div></article><article class="photo-card"><div class="photo-number">5</div><div class="photo-slot"></div></article><article class="photo-card"><div class="photo-number">6</div><div class="photo-slot"></div></article></div>
+      </div>
+    </section>
+    <section class="page page-two">
+      <div class="page-number">2</div>
+      <div class="photo-grid second-grid" aria-label="Dokumentasi kegiatan 7 sampai 9"><article class="photo-card"><div class="photo-number">7</div><div class="photo-slot"></div></article><article class="photo-card"><div class="photo-number">8</div><div class="photo-slot"></div></article><article class="photo-card"><div class="photo-number">9</div><div class="photo-slot"></div></article></div>
+      <footer class="signatures">
+        <div class="signature-block left-signature"><p>Mengetahui,<br />Komandan Koramil 1609-05/Sukasada</p><div class="signature-space" id="commander-signature-space"><img class="stamp-image" id="unit-stamp-image" alt="Stempel satuan" hidden /><img class="signature-image commander-signature-image" id="commander-signature-image" alt="Tanda tangan Komandan Koramil" hidden /></div><strong>I Nyoman Arya Kepakisan</strong><span>Kapten Inf NRP 3910357550170</span></div>
+        <div class="signature-block right-signature"><p>Singaraja, <span id="signature-date" class="signature-date"></span><br />Babinsa Koramil 1609-05/<span class="signature-village">Sukasada</span>,</p><div class="signature-space babinsa-signature-space" id="babinsa-signature-space"></div><strong id="babinsa-name" class="babinsa-name">Jasman</strong><span><span id="babinsa-rank" class="babinsa-rank">Koptu</span> NRP <span id="babinsa-nrp" class="babinsa-nrp">31071130800486</span></span></div>
+      </footer>
+    </section>
+  </main>
 
-<div id="iosHint" class="ios-hint">
-  📱 iPhone: tekan <b>Share</b> → <b>Add to Home Screen</b>
-</div>
-
-<script>
-/* === SERVICE WORKER === */
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/bankflow-jimpitan/sw.js");
-  });
-}
-
-/* === INSTALL ANDROID (1 KLIK) === */
-let deferredPrompt;
-const installBtn = document.getElementById("installBtn");
-
-window.addEventListener("beforeinstallprompt", e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  setTimeout(() => installBtn.classList.add("show"), 1500);
-});
-
-installBtn.addEventListener("click", async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-  installBtn.classList.remove("show");
-});
-
-/* === iOS HINT === */
-const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-if (isIOS && !navigator.standalone) {
-  document.getElementById("iosHint").style.display = "block";
-}
-</script>
-
+  <main class="document budget-document report-canvas" id="budget-document" hidden>
+    <section class="page budget-page budget-page-one">
+      <header class="budget-header"><div class="unit-heading"><strong>KOMANDO DISTRIK MILITER 1609/BULELENG</strong><strong>KOMANDO RAYON MILITER 1609-05</strong></div><div class="budget-attachment"><span>Lampiran : <span class="budget-attachment-code">A</span> (Rincian dukungan anggaran) pada</span><span>Laplakgiat Dukungan Operasional Babinsa Koramil 1609-05/<span class="budget-attachment-village">Sukasada</span></span><span>Bulan <span class="budget-attachment-period"></span></span></div></header>
+      <h1 class="budget-title">RINCIAN DUKUNGAN ANGGARAN<br />KEGIATAN DUKUNGAN OPERASIONAL BABINSA KORAMIL 1609-05/<span class="budget-title-village">SUKASADA</span><br />BULAN <span class="budget-title-period"></span></h1>
+      <table class="budget-table" aria-label="Rincian dukungan anggaran halaman satu"><colgroup><col /><col /><col /><col /><col /></colgroup><thead><tr><th>NO</th><th>HARI/TANGGAL</th><th>URAIAN KEGIATAN</th><th>PENGGUNAAN DANA (RP)</th><th>KETERANGAN</th></tr><tr class="budget-column-numbers" aria-hidden="true"><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody id="budget-rows-first"></tbody></table>
+    </section>
+    <section class="page budget-page budget-page-two"><div class="page-number">2</div><table class="budget-table" aria-label="Rincian dukungan anggaran halaman dua"><colgroup><col /><col /><col /><col /><col /></colgroup><thead><tr class="budget-column-numbers" aria-hidden="true"><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody id="budget-rows-second"></tbody></table>
+      <footer class="signatures budget-signatures"><div class="signature-block left-signature"><p>Mengetahui,<br />Komandan Koramil 1609-05/Sukasada</p><div class="signature-space" id="budget-commander-signature-space"><img class="stamp-image" id="budget-unit-stamp-image" alt="Stempel satuan" hidden /><img class="signature-image commander-signature-image" id="budget-commander-signature-image" alt="Tanda tangan Komandan Koramil" hidden /></div><strong>I Nyoman Arya Kepakisan</strong><span>Kapten Inf NRP 3910357550170</span></div><div class="signature-block right-signature"><p>Singaraja, <span class="signature-date"></span><br />Babinsa Koramil 1609-05/<span class="signature-village">Sukasada</span>,</p><div class="signature-space babinsa-signature-space" id="budget-babinsa-signature-space"></div><strong class="babinsa-name">Jasman</strong><span><span class="babinsa-rank">Koptu</span> NRP <span class="babinsa-nrp">31071130800486</span></span></div></footer>
+    </section>
+  </main>
+  <script src="data/report-data.js"></script>
+  <script src="zip-reader.js"></script>
+  <script src="script.js"></script>
+  <script src="tajuk/ttd.js"></script>
+  <script src="tajuk/lampiran-folder.js"></script>
+  <script src="pwa.js"></script>
 </body>
 </html>

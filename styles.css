@@ -1,0 +1,42 @@
+
+
+/* Distinct groups make attachment upload and print mode clearly different actions. */
+.toolbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 7px;
+  border: 1px solid #e1e6e1;
+  border-radius: 6px;
+  background: #f8faf8;
+}
+
+.toolbar-group-label {
+  flex-basis: 100%;
+  color: #526055;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.upload-toolbar-group {
+  border-color: #cbdccc;
+  background: #f3f8f3;
+}
+
+.print-toolbar-group {
+  border-color: #dedede;
+}
+
+@media (max-width: 800px) {
+  .toolbar-group {
+    justify-content: center;
+    max-width: 100%;
+  }
+}
+
+@media print {
+  .toolbar-group { display: none !important; }
+}
